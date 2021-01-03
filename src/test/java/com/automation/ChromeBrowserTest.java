@@ -1,12 +1,15 @@
 package com.automation;
+
 import io.appium.java_client.remote.MobileCapabilityType;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
-
 import java.net.URL;
 
 public class ChromeBrowserTest {
@@ -28,9 +31,16 @@ public class ChromeBrowserTest {
         driver = new RemoteWebDriver(url, desiredCapabilities);
     }
 
-
     @Test
-    public void mobileChromeTest(){
+    public void mobileChromeTest() throws InterruptedException {
         driver.get("http://qa1.vytrack.com");
+        driver.findElement(By.id("prependedInput")).sendKeys("storemanager85");
+        driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123", Keys.ENTER);
+        Thread.sleep(3000);
+    }
+
+    @After
+    public void tearDown(){
+        driver.quit();
     }
 }
